@@ -60,17 +60,17 @@ typedef struct s_philo
 	int				eat_times;
 }				t_philo;
 
-int				ft_eating(t_philo *philo);
+int			ft_eating(t_philo *philo);
 
-unsigned long	get_time(void);
+u_int64_t		get_time(void);
 
-int				ft_atoi(const char *str);
+int			ft_atoi(const char *str);
 
-int				destroy_mutex(t_philo *philo);
+int			destroy_mutex(t_philo *philo);
 
 void			create_philo(t_philo *philo);
 
-int				init_philo(t_philo *philo, t_data *data);
+int			init_philo(t_philo *philo, t_data *data);
 
 t_philo			*init_struct(char *argv[]);
 
@@ -79,5 +79,13 @@ void			print_action(t_philo *philo, char *code);
 u_int64_t		timestamp(u_int64_t start);
 
 void			for_wait(u_int64_t time);
+
+void			*death(void *arg);
+
+void			kill_philo(t_philo *philo);
+
+int			someone_starved(t_philo *philo, u_int64_t time_to_die);
+
+int			exit_check(t_philo *philo);
 
 #endif
