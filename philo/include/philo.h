@@ -40,11 +40,11 @@ typedef pthread_mutex_t	t_mutex;
 typedef struct s_data
 {
 	u_int64_t		time;
-	unsigned long	time_to_die;
-	unsigned long	time_to_eat;
-	unsigned long	time_to_sleep;
-	unsigned long	time_to_think;
-	int				number_of_philosophers;
+	u_int64_t		time_to_die;
+	u_int64_t		time_to_eat;
+	u_int64_t		time_to_sleep;
+	u_int64_t		time_to_think;
+	int			number_of_philosophers;
 	bool			should_exit;
 	t_mutex			*mutex;
 }				t_data;

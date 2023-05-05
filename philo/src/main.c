@@ -23,10 +23,8 @@ bool	exit_check(t_philo *philo)
 void	*life_philosopher(void *arg)
 {
 	t_philo			*philo;
-	unsigned long	start;
 
 	philo = (t_philo *)arg;
-	start = get_time();
 	if ((philo->id % 2) == 0)
 	{
 		print_action(philo, THINK);
@@ -37,7 +35,7 @@ void	*life_philosopher(void *arg)
 		ft_eating(philo);
 		print_action(philo, SLEEP);
 		for_wait(philo->data->time_to_sleep);
-		if (philo->data->number_of_philosophers % 2 == 1)
+		if (philo->data->number_of_philosophers % 2 != 0)
 			usleep(1000);
 		else
 			usleep(100);

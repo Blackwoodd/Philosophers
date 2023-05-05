@@ -42,6 +42,7 @@ int	ft_eating(t_philo *philo)
 	choosing_fork(philo, 2);
 	print_action(philo, FORK);
 	print_action(philo, EAT);
+	for_wait(philo->data->time_to_eat);
 	pthread_mutex_lock(&philo->data->mutex[READ]);
 	if (philo->eat_times != -1)
 		philo->eat_times++;
