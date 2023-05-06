@@ -41,9 +41,9 @@ $(NAME)	:	$(OBJS)
 			@echo "\033[0;32mCompilation : OK.\033[0m"
 
 clean	:
-			@echo "\033[0;33mclean...\033[0m"
+			@echo "\033[0;33mClean...\033[0m"
 			$(RM) $(OBJS)
-			@echo "\033[0;32mclean : OK.\033[0m"
+			@echo "\033[0;32mClean : OK.\033[0m"
 
 fclean	:	clean
 			$(RM) $(NAME)
