@@ -6,13 +6,14 @@
 /*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:43:56 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/02 17:11:40 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:05:36 by nbechon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <sys/types.h>
 # include <sys/time.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -44,7 +45,7 @@ typedef struct s_data
 	u_int64_t		time_to_eat;
 	u_int64_t		time_to_sleep;
 	u_int64_t		time_to_think;
-	int			number_of_philosophers;
+	int				number_of_philosophers;
 	bool			should_exit;
 	t_mutex			*mutex;
 }				t_data;
@@ -60,17 +61,17 @@ typedef struct s_philo
 	int				eat_times;
 }				t_philo;
 
-int			ft_eating(t_philo *philo);
+int				ft_eating(t_philo *philo);
 
 u_int64_t		get_time(void);
 
-int			ft_atoi(const char *str);
+int				ft_atoi(const char *str);
 
-int			destroy_mutex(t_philo *philo);
+int				destroy_mutex(t_philo *philo);
 
 void			create_philo(t_philo *philo);
 
-int			init_philo(t_philo *philo, t_data *data);
+int				init_philo(t_philo *philo, t_data *data);
 
 t_philo			*init_struct(char *argv[]);
 
@@ -82,10 +83,6 @@ void			for_wait(u_int64_t time);
 
 void			*death(void *arg);
 
-void			kill_philo(t_philo *philo);
-
-int			someone_starved(t_philo *philo, u_int64_t time_to_die);
-
-int			exit_check(t_philo *philo);
+int				exit_check(t_philo *philo);
 
 #endif

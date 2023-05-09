@@ -6,7 +6,7 @@
 /*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:41:23 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/04 17:59:44 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/09 16:22:40 by nbechon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*life_philosopher(void *arg)
 		ft_eating(philo);
 		print_action(philo, SLEEP);
 		for_wait(philo->data->time_to_sleep);
-		if (philo->data->number_of_philosophers % 2 != 0)
+		if (philo->data->number_of_philosophers % 2 == 1)
 			usleep(1000);
 		else
 			usleep(100);
@@ -45,7 +45,7 @@ void	*life_philosopher(void *arg)
 	return (0);
 }
 
-void	creat_philo(t_philo *philo)
+void	create_philo(t_philo *philo)
 {
 	pthread_t	*id;
 	pthread_t	kill;
@@ -72,7 +72,7 @@ int	main(int argc, char *argv[])
 	if (argc > 1)
 	{
 		philo = init_struct(argv);
-		creat_philo(philo);
+		create_philo(philo);
 	}
 	return (0);
 }
