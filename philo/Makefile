@@ -6,26 +6,17 @@ NAME		= philo
 ############ SOURCES ###########
 
 PATH_SRCS	= src/
+VPATH		= $(PATH_SRCS)
+SRCS 		= $(wildcard $(PATH_SRCS)*.c)
 
-SRCS		+= main.c
-SRCS		+= time.c
-SRCS		+= mutex.c
-SRCS		+= init_arg.c
-SRCS		+= philo_eat.c
-SRCS		+= print.c
-SRCS		+= death.c	
-
-vpath %.c $(PATH_SRCS)
 
 ########## VARIABLES ############
 
 PATH_OBJS	= objs/
-OBJS		= $(patsubst %.c, $(PATH_OBJS)/%.o, $(SRCS))
+OBJS		= $(patsubst $(PATH_SRCS)/%.c, $(PATH_OBJS)/%.o, $(SRCS))
 RM			= @rm -f
 CC			= @cc
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=thread #-fsanitize=address
-# CFLAGS		+= -fsanitize
-
+CFLAGS		= -Wall -Wextra -Werror -fsanitize=address #-fsanitize=thread
 
 ############ REGLES #############
 
@@ -43,9 +34,9 @@ $(NAME)	:	$(OBJS)
 			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 			@echo "\033[0;32mCompilation : OK.\033[0m"
 
-$(OBJS)	: 	$(PATH_OBJS)/%.o: %.c include/philo.h
-			@mkdir -p $(PATH_OBJS)
-			@$(CC) $(CFLAGS) -c $< -o $@
+# $(OBJS)	: 	$(PATH_OBJS)/%.o: $(PATH_SRCS)/%.c include/philo.h
+# 			@mkdir -p $(PATH_OBJS)
+# 			@$(CC) $(CFLAGS) -c $< -o $@
 
 clean	:
 			@echo "\033[0;33mClean...\033[0m"
