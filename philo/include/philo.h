@@ -6,7 +6,7 @@
 /*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:43:56 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/09 14:05:36 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/15 14:23:49 by nbechon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_data
 	u_int64_t		time_to_eat;
 	u_int64_t		time_to_sleep;
 	u_int64_t		time_to_think;
+	int				must_eat;
 	int				number_of_philosophers;
 	bool			should_exit;
 	t_mutex			*mutex;
@@ -61,28 +62,30 @@ typedef struct s_philo
 	int				eat_times;
 }				t_philo;
 
-int				ft_eating(t_philo *philo);
-
-u_int64_t		get_time(void);
+int				exit_check(t_philo *philo);
 
 int				ft_atoi(const char *str);
 
-int				destroy_mutex(t_philo *philo);
+void			free_all(t_philo *philo);
 
-void			create_philo(t_philo *philo);
-
-int				init_philo(t_philo *philo, t_data *data);
-
-t_philo			*init_struct(char *argv[]);
+void			destroy_mutex(t_philo *philo);
 
 void			print_action(t_philo *philo, char *code);
 
-u_int64_t		timestamp(u_int64_t start);
-
-void			for_wait(u_int64_t time);
+void			for_wait(u_int64_t time, t_philo *philo);
 
 void			*death(void *arg);
 
-int				exit_check(t_philo *philo);
+void			*life_philosopher(void *arg);
+
+void			kill_philo(t_philo *philo);
+
+void			*count_meal(void *data);
+
+u_int64_t		timestamp(u_int64_t start);
+
+u_int64_t		get_time(void);
+
+t_philo			*init_struct(int argc, char *argv[]);
 
 #endif
