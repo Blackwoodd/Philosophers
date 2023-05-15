@@ -6,7 +6,7 @@
 /*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:15:36 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/05 14:27:16 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:21:20 by nbechon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,15 @@ u_int64_t	timestamp(u_int64_t start)
 	return (get_time() - start);
 }
 
-void	for_wait(u_int64_t time)
+void	for_wait(u_int64_t time, t_philo *philo)
 {
 	u_int64_t	start;
 
 	start = get_time();
 	while ((get_time() - start) < time)
-		usleep(10);
+	{
+		if (exit_check(philo) == true)
+			return ;
+		usleep(100);
+	}
 }
